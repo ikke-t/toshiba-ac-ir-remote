@@ -1,643 +1,906 @@
 [
-  {
-    "id": "ad7bedc7.ccb05",
-    "type": "tab",
-    "label": "ir control",
-    "disabled": false,
-    "info": ""
-  },
-  {
-    "id": "34401740.e754b",
-    "type": "debug",
-    "z": "ad7bedc7.ccb05",
-    "name": "arduino status",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "x": 860,
-    "y": 160,
-    "wires": []
-  },
-  {
-    "id": "eacca4cb.2c2cc8",
-    "type": "serial in",
-    "z": "ad7bedc7.ccb05",
-    "name": "Arduino-IR",
-    "serial": "34c965de.bcb12a",
-    "x": 180,
-    "y": 160,
-    "wires": [
-      [
-        "7a6c752f.009a94"
-      ]
-    ]
-  },
-  {
-    "id": "e9fcf402.8b1c7",
-    "type": "serial out",
-    "z": "ad7bedc7.ccb05",
-    "name": "Arduino-IR",
-    "serial": "34c965de.bcb12a",
-    "x": 950,
-    "y": 460,
-    "wires": []
-  },
-  {
-    "id": "7eee79a8.b68158",
-    "type": "inject",
-    "z": "ad7bedc7.ccb05",
-    "name": "init temp",
-    "topic": "temp",
-    "payload": "21",
-    "payloadType": "num",
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "x": 180,
-    "y": 380,
-    "wires": [
-      [
-        "6e6e76b4.996488"
-      ]
-    ]
-  },
-  {
-    "id": "6e6e76b4.996488",
-    "type": "ui_slider",
-    "z": "ad7bedc7.ccb05",
-    "name": "temp",
-    "label": "set temp",
-    "tooltip": "Set AC temperature",
-    "group": "ac5b4b5f.bf40a8",
-    "order": 3,
-    "width": 0,
-    "height": 0,
-    "passthru": true,
-    "outs": "all",
-    "topic": "temp",
-    "min": "17",
-    "max": "30",
-    "step": 1,
-    "x": 370,
-    "y": 380,
-    "wires": [
-      [
-        "222b32db.f87eee",
-        "910782cf.e13c98"
-      ]
-    ]
-  },
-  {
-    "id": "222b32db.f87eee",
-    "type": "ui_gauge",
-    "z": "ad7bedc7.ccb05",
-    "name": "temp",
-    "group": "ac5b4b5f.bf40a8",
-    "order": 2,
-    "width": 0,
-    "height": 0,
-    "gtype": "gage",
-    "title": "",
-    "label": "units",
-    "format": "{{value}}",
-    "min": "17",
-    "max": "32",
-    "colors": [
-      "#21a1de",
-      "#5fad47",
-      "#ca3838"
-    ],
-    "seg1": "19",
-    "seg2": "24",
-    "x": 510,
-    "y": 380,
-    "wires": []
-  },
-  {
-    "id": "4e43f301.714244",
-    "type": "ui_dropdown",
-    "z": "ad7bedc7.ccb05",
-    "name": "mode",
-    "label": "set mode",
-    "tooltip": "Set AC mode",
-    "place": "Select option",
-    "group": "ac5b4b5f.bf40a8",
-    "order": 4,
-    "width": 0,
-    "height": 0,
-    "passthru": true,
-    "options": [
-      {
-        "label": "",
-        "value": "heat",
-        "type": "str"
-      },
-      {
-        "label": "",
-        "value": "cool",
-        "type": "str"
-      },
-      {
-        "label": "",
-        "value": "dry",
-        "type": "str"
-      },
-      {
-        "label": "",
-        "value": "auto",
-        "type": "str"
-      }
-    ],
-    "payload": "",
-    "topic": "mode",
-    "x": 370,
-    "y": 440,
-    "wires": [
-      [
-        "8a315364.666268"
-      ]
-    ]
-  },
-  {
-    "id": "72981c8e.499f0c",
-    "type": "inject",
-    "z": "ad7bedc7.ccb05",
-    "name": "init ac mode",
-    "topic": "mode",
-    "payload": "heat",
-    "payloadType": "str",
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "x": 190,
-    "y": 440,
-    "wires": [
-      [
-        "4e43f301.714244"
-      ]
-    ]
-  },
-  {
-    "id": "23573ed1.b880e2",
-    "type": "ui_dropdown",
-    "z": "ad7bedc7.ccb05",
-    "name": "fan speed",
-    "label": "set fan",
-    "tooltip": "Set AC fan speed",
-    "place": "Select option",
-    "group": "ac5b4b5f.bf40a8",
-    "order": 5,
-    "width": 0,
-    "height": 0,
-    "passthru": true,
-    "options": [
-      {
-        "label": "auto",
-        "value": "auto",
-        "type": "str"
-      },
-      {
-        "label": "*",
-        "value": "1",
-        "type": "str"
-      },
-      {
-        "label": "**",
-        "value": "2",
-        "type": "str"
-      },
-      {
-        "label": "***",
-        "value": "3",
-        "type": "str"
-      },
-      {
-        "label": "****",
-        "value": "4",
-        "type": "str"
-      },
-      {
-        "label": "*****",
-        "value": "5",
-        "type": "str"
-      }
-    ],
-    "payload": "",
-    "topic": "fan",
-    "x": 380,
-    "y": 500,
-    "wires": [
-      [
-        "8a315364.666268"
-      ]
-    ]
-  },
-  {
-    "id": "f7a94467.d5fa58",
-    "type": "inject",
-    "z": "ad7bedc7.ccb05",
-    "name": "init fan speed",
-    "topic": "fan",
-    "payload": "auto",
-    "payloadType": "str",
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "x": 200,
-    "y": 500,
-    "wires": [
-      [
-        "23573ed1.b880e2"
-      ]
-    ]
-  },
-  {
-    "id": "922a927e.035868",
-    "type": "ui_button",
-    "z": "ad7bedc7.ccb05",
-    "name": "Send",
-    "group": "ac5b4b5f.bf40a8",
-    "order": 6,
-    "width": 0,
-    "height": 0,
-    "passthru": false,
-    "label": "send",
-    "tooltip": "lähetä käsky",
-    "color": "",
-    "bgcolor": "",
-    "icon": "",
-    "payload": "send",
-    "payloadType": "str",
-    "topic": "send",
-    "x": 370,
-    "y": 620,
-    "wires": [
-      [
-        "8a315364.666268"
-      ]
-    ]
-  },
-  {
-    "id": "27bd0f86.56c68",
-    "type": "ui_dropdown",
-    "z": "ad7bedc7.ccb05",
-    "name": "command",
-    "label": "set command",
-    "tooltip": "Select command",
-    "place": "Select option",
-    "group": "ac5b4b5f.bf40a8",
-    "order": 1,
-    "width": 0,
-    "height": 0,
-    "passthru": true,
-    "options": [
-      {
-        "label": "ON",
-        "value": "on",
-        "type": "str"
-      },
-      {
+    {
+        "id": "ad7bedc7.ccb05",
+        "type": "tab",
+        "label": "ir control",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "34401740.e754b",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "arduino status",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 860,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "eacca4cb.2c2cc8",
+        "type": "serial in",
+        "z": "ad7bedc7.ccb05",
+        "name": "Arduino-IR",
+        "serial": "34c965de.bcb12a",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "88e8ed8a.6f19d8",
+                "c45a16eb.46f608"
+            ]
+        ]
+    },
+    {
+        "id": "e9fcf402.8b1c7",
+        "type": "serial out",
+        "z": "ad7bedc7.ccb05",
+        "name": "Arduino-IR",
+        "serial": "34c965de.bcb12a",
+        "x": 1030,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7eee79a8.b68158",
+        "type": "inject",
+        "z": "ad7bedc7.ccb05",
+        "name": "init temp",
+        "topic": "temp",
+        "payload": "21",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "6e6e76b4.996488"
+            ]
+        ]
+    },
+    {
+        "id": "6e6e76b4.996488",
+        "type": "ui_slider",
+        "z": "ad7bedc7.ccb05",
+        "name": "temp",
+        "label": "set temp",
+        "tooltip": "Set AC temperature",
+        "group": "ac5b4b5f.bf40a8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "temp",
+        "min": "17",
+        "max": "30",
+        "step": 1,
+        "x": 370,
+        "y": 380,
+        "wires": [
+            [
+                "222b32db.f87eee",
+                "910782cf.e13c98"
+            ]
+        ]
+    },
+    {
+        "id": "222b32db.f87eee",
+        "type": "ui_gauge",
+        "z": "ad7bedc7.ccb05",
+        "name": "temp",
+        "group": "ac5b4b5f.bf40a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "17",
+        "max": "32",
+        "colors": [
+            "#21a1de",
+            "#5fad47",
+            "#ca3838"
+        ],
+        "seg1": "19",
+        "seg2": "24",
+        "x": 510,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "4e43f301.714244",
+        "type": "ui_dropdown",
+        "z": "ad7bedc7.ccb05",
+        "name": "mode",
+        "label": "set mode",
+        "tooltip": "Set AC mode",
+        "place": "Select option",
+        "group": "ac5b4b5f.bf40a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "",
+                "value": "heat",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "cool",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "dry",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "auto",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "mode",
+        "x": 370,
+        "y": 440,
+        "wires": [
+            [
+                "8a315364.666268"
+            ]
+        ]
+    },
+    {
+        "id": "72981c8e.499f0c",
+        "type": "inject",
+        "z": "ad7bedc7.ccb05",
+        "name": "init ac mode",
+        "topic": "mode",
+        "payload": "heat",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "4e43f301.714244"
+            ]
+        ]
+    },
+    {
+        "id": "23573ed1.b880e2",
+        "type": "ui_dropdown",
+        "z": "ad7bedc7.ccb05",
+        "name": "fan speed",
+        "label": "set fan",
+        "tooltip": "Set AC fan speed",
+        "place": "Select option",
+        "group": "ac5b4b5f.bf40a8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "auto",
+                "value": "auto",
+                "type": "str"
+            },
+            {
+                "label": "*",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "label": "**",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "label": "***",
+                "value": "3",
+                "type": "str"
+            },
+            {
+                "label": "****",
+                "value": "4",
+                "type": "str"
+            },
+            {
+                "label": "*****",
+                "value": "5",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "fan",
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "8a315364.666268"
+            ]
+        ]
+    },
+    {
+        "id": "f7a94467.d5fa58",
+        "type": "inject",
+        "z": "ad7bedc7.ccb05",
+        "name": "init fan speed",
+        "topic": "fan",
+        "payload": "auto",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 500,
+        "wires": [
+            [
+                "23573ed1.b880e2"
+            ]
+        ]
+    },
+    {
+        "id": "922a927e.035868",
+        "type": "ui_button",
+        "z": "ad7bedc7.ccb05",
+        "name": "Send",
+        "group": "ac5b4b5f.bf40a8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "send",
+        "tooltip": "lähetä käsky",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "send",
+        "payloadType": "str",
+        "topic": "send",
+        "x": 370,
+        "y": 620,
+        "wires": [
+            [
+                "8a315364.666268"
+            ]
+        ]
+    },
+    {
+        "id": "27bd0f86.56c68",
+        "type": "ui_dropdown",
+        "z": "ad7bedc7.ccb05",
+        "name": "command",
+        "label": "set command",
+        "tooltip": "Select command",
+        "place": "Select option",
+        "group": "ac5b4b5f.bf40a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "ON",
+                "value": "on",
+                "type": "str"
+            },
+            {
+                "label": "OFF",
+                "value": "off",
+                "type": "str"
+            },
+            {
+                "label": "swing right",
+                "value": "swing",
+                "type": "str"
+            },
+            {
+                "label": "swing down",
+                "value": "vertical",
+                "type": "str"
+            },
+            {
+                "label": "high power",
+                "value": "hipwr",
+                "type": "str"
+            },
+            {
+                "label": "sleep",
+                "value": "sleep",
+                "type": "str"
+            },
+            {
+                "label": "ir status",
+                "value": "stats",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "command",
+        "x": 380,
+        "y": 560,
+        "wires": [
+            [
+                "8a315364.666268"
+            ]
+        ]
+    },
+    {
+        "id": "8a315364.666268",
+        "type": "function",
+        "z": "ad7bedc7.ccb05",
+        "name": "send ir command",
+        "func": "const irMsg = {\n    topic: msg.topic,\n    payload: {}\n};\n\n// on | off | swing | hipwr | sleep | vertical | stats\nvar cmd = context.get('cmd')||\"on\";\nvar temp = context.get('temp')||\"21\";\nvar mode = context.get('mode')||\"heat\";\nvar fan = context.get('fan')||\"auto\";\n\nif (msg.topic === \"command\") {\n    cmd = msg.payload;\n    context.set('cmd', cmd);\n}\n\nif (msg.topic === \"temp\") {\n    temp = msg.payload;\n    context.set('temp', temp);\n}\n\nif (msg.topic === \"mode\") {\n    temp = msg.payload;\n    context.set('mode', mode);\n}\n\nif (msg.topic === \"fan\") {\n    temp = msg.payload;\n    context.set('fan', fan);\n}\n\nif (msg.topic === \"send\") {\n    if (cmd === \"on\") {\n        irMsg.payload.cmd = cmd;\n        irMsg.payload.temp = temp;\n        irMsg.payload.mode = mode;\n        irMsg.payload.fan = fan;\n    } else {\n        irMsg.payload.cmd = cmd;\n    }\n} else {\n    // we only got value update, don't send\n    return[null, msg];\n}\n\n\nnode.log(\"sent command: \" + irMsg.payload);\n\nreturn [irMsg, irMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 730,
+        "y": 480,
+        "wires": [
+            [
+                "e9fcf402.8b1c7",
+                "d4d332d.a4f885"
+            ],
+            [
+                "15175203.fd0a0e"
+            ]
+        ]
+    },
+    {
+        "id": "d77833c6.f1d728",
+        "type": "inject",
+        "z": "ad7bedc7.ccb05",
+        "name": "init command",
+        "topic": "command",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 560,
+        "wires": [
+            [
+                "27bd0f86.56c68"
+            ]
+        ]
+    },
+    {
+        "id": "15175203.fd0a0e",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "dropped for send",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1010,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8835da52.9347a8",
+        "type": "ui_button",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick 23 auto",
+        "group": "39e89765.5c8f88",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "23°C automatic",
+        "tooltip": "quick set 23°C automatic",
+        "color": "",
+        "bgcolor": "#99ffbb",
+        "icon": "",
+        "payload": "{\"cmd\":\"on\",\"temp\":\"23\",\"mode\":\"auto\",\"fan\":\"auto\"}",
+        "payloadType": "json",
+        "topic": "send",
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "e9fcf402.8b1c7",
+                "ea431709.c91f4"
+            ]
+        ]
+    },
+    {
+        "id": "48718d9f.3a3324",
+        "type": "ui_button",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick 23 cool",
+        "group": "39e89765.5c8f88",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "23°C cooling",
+        "tooltip": "quick set 23°C cooling",
+        "color": "",
+        "bgcolor": "#99ccff",
+        "icon": "",
+        "payload": "{\"cmd\":\"on\",\"temp\":\"23\",\"mode\":\"cool\",\"fan\":\"auto\"}",
+        "payloadType": "json",
+        "topic": "send",
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "e9fcf402.8b1c7",
+                "294a59c6.d4fcf6"
+            ]
+        ]
+    },
+    {
+        "id": "e4f6e720.9a1d",
+        "type": "ui_button",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick 23 heat",
+        "group": "39e89765.5c8f88",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "23°C heating",
+        "tooltip": "quick set 23°C heating",
+        "color": "",
+        "bgcolor": "#ffd699",
+        "icon": "",
+        "payload": "{\"cmd\":\"on\",\"temp\":\"23\",\"mode\":\"heat\",\"fan\":\"auto\"}",
+        "payloadType": "json",
+        "topic": "send",
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "e9fcf402.8b1c7",
+                "24882e74.4e5f82"
+            ]
+        ]
+    },
+    {
+        "id": "ea431709.c91f4",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick auto",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 850,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "24882e74.4e5f82",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick heat",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 850,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "294a59c6.d4fcf6",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick cool",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 840,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "88e8ed8a.6f19d8",
+        "type": "json",
+        "z": "ad7bedc7.ccb05",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "34401740.e754b",
+                "ed41223e.ec3378"
+            ]
+        ]
+    },
+    {
+        "id": "910782cf.e13c98",
+        "type": "change",
+        "z": "ad7bedc7.ccb05",
+        "name": "int to string",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$string(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 420,
+        "wires": [
+            [
+                "8a315364.666268"
+            ]
+        ]
+    },
+    {
+        "id": "b26baa85.44f3e8",
+        "type": "http in",
+        "z": "ad7bedc7.ccb05",
+        "name": "api",
+        "url": "/api",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 720,
+        "wires": [
+            [
+                "987893c9.a54dc8",
+                "d0fd18ec.5a048"
+            ]
+        ]
+    },
+    {
+        "id": "987893c9.a54dc8",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "api",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 370,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e616b95f.b76d48",
+        "type": "http response",
+        "z": "ad7bedc7.ccb05",
+        "name": "send api response",
+        "statusCode": "",
+        "headers": {},
+        "x": 1050,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "ed41223e.ec3378",
+        "type": "function",
+        "z": "ad7bedc7.ccb05",
+        "name": "save last response",
+        "func": "var response = global.get(\"arduinoResponse\")||\"not connected\";\n\nif (msg.payload.status != \"waiting\") {\n    response = msg.payload;\n    global.set(\"arduinoResponse\", response)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2ef654f.a4245",
+        "type": "ui_button",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick off",
+        "group": "39e89765.5c8f88",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
         "label": "OFF",
-        "value": "off",
-        "type": "str"
-      },
-      {
-        "label": "swing right",
-        "value": "swing",
-        "type": "str"
-      },
-      {
-        "label": "swing down",
-        "value": "vertical",
-        "type": "str"
-      },
-      {
-        "label": "high power",
-        "value": "hipwr",
-        "type": "str"
-      },
-      {
-        "label": "sleep",
-        "value": "sleep",
-        "type": "str"
-      },
-      {
-        "label": "ir status",
-        "value": "stats",
-        "type": "str"
-      }
-    ],
-    "payload": "",
-    "topic": "command",
-    "x": 380,
-    "y": 560,
-    "wires": [
-      [
-        "8a315364.666268"
-      ]
-    ]
-  },
-  {
-    "id": "8a315364.666268",
-    "type": "function",
-    "z": "ad7bedc7.ccb05",
-    "name": "send ir command",
-    "func": "//var irMsg = { topic: msg.topic, payload: null };\nconst irMsg = {\n    topic: msg.topic,\n    payload: {}\n//    payload.cmd: {},\n//    payload.temp: {},\n//    payload.mode: {},\n//    payload.fan: {},\n};\n\n// on | off | swing | hipwr | sleep | vertical | stats\nvar cmd = context.get('cmd')||\"on\";\nvar temp = context.get('temp')||\"21\";\nvar mode = context.get('mode')||\"heat\";\nvar fan = context.get('fan')||\"auto\";\n\nif (msg.topic === \"command\") {\n    cmd = msg.payload;\n    context.set('cmd', cmd);\n    //node.log(\"got command: \" + cmd);\n}\n\nif (msg.topic === \"temp\") {\n    temp = msg.payload;\n    context.set('temp', temp);\n    //node.log(\"got temp: \" + temp);\n}\n\nif (msg.topic === \"mode\") {\n    temp = msg.payload;\n    context.set('mode', mode);\n    //node.log(\"got mode: \" + mode);\n}\n\nif (msg.topic === \"fan\") {\n    temp = msg.payload;\n    context.set('fan', fan);\n    //node.log(\"got fan: \" + fan);\n}\n\nif (msg.topic === \"send\") {\n    //irMsg.topic = msg.topic;\n    if (cmd === \"on\") {\n//        irMsg.payload =\n//            \"{\\\"cmd\\\":\\\"\" + cmd  + \"\\\"\" +\n//            \"\\\"temp\\\":\\\"\" + temp + \"\\\"\" +\n//            \"\\\"mode\\\":\\\"\" + mode + \"\\\"\" +\n//            \"\\\"fan\\\":\\\"\"  + fan  + \"\\\"\" +\n//            \"}\";\n//    } else {\n//        irMsg.payload = \"{\\\"cmd\\\":\\\"\" + cmd + \"\\\"}\";\n        irMsg.payload.cmd = cmd;\n        irMsg.payload.temp = temp;\n        irMsg.payload.mode = mode;\n        irMsg.payload.fan = fan;\n    } else {\n        irMsg.payload.cmd = cmd;\n    }\n} else {\n    // we only got value update, don't send\n    return[null, msg];\n}\n\n\nnode.log(\"sent command: \" + irMsg.payload);\n\nreturn [irMsg, irMsg];",
-    "outputs": 2,
-    "noerr": 0,
-    "x": 750,
-    "y": 480,
-    "wires": [
-      [
-        "e9fcf402.8b1c7"
-      ],
-      [
-        "15175203.fd0a0e"
-      ]
-    ]
-  },
-  {
-    "id": "d77833c6.f1d728",
-    "type": "inject",
-    "z": "ad7bedc7.ccb05",
-    "name": "init command",
-    "topic": "command",
-    "payload": "on",
-    "payloadType": "str",
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "x": 200,
-    "y": 560,
-    "wires": [
-      [
-        "27bd0f86.56c68"
-      ]
-    ]
-  },
-  {
-    "id": "15175203.fd0a0e",
-    "type": "debug",
-    "z": "ad7bedc7.ccb05",
-    "name": "send",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "x": 930,
-    "y": 520,
-    "wires": []
-  },
-  {
-    "id": "8835da52.9347a8",
-    "type": "ui_button",
-    "z": "ad7bedc7.ccb05",
-    "name": "quick 23 auto",
-    "group": "39e89765.5c8f88",
-    "order": 0,
-    "width": 0,
-    "height": 0,
-    "passthru": false,
-    "label": "23°C automatic",
-    "tooltip": "quick set 23°C automatic",
-    "color": "",
-    "bgcolor": "#99ffbb",
-    "icon": "",
-    "payload": "{\"cmd\":\"on\",\"temp\":\"23\",\"mode\":\"auto\",\"fan\":\"auto\"}",
-    "payloadType": "json",
-    "topic": "send",
-    "x": 400,
-    "y": 240,
-    "wires": [
-      [
-        "e9fcf402.8b1c7",
-        "ea431709.c91f4"
-      ]
-    ]
-  },
-  {
-    "id": "48718d9f.3a3324",
-    "type": "ui_button",
-    "z": "ad7bedc7.ccb05",
-    "name": "quick 23 cool",
-    "group": "39e89765.5c8f88",
-    "order": 0,
-    "width": 0,
-    "height": 0,
-    "passthru": false,
-    "label": "23°C cooling",
-    "tooltip": "quick set 23°C cooling",
-    "color": "",
-    "bgcolor": "#99ccff",
-    "icon": "",
-    "payload": "{\"cmd\":\"on\",\"temp\":\"23\",\"mode\":\"cool\",\"fan\":\"auto\"}",
-    "payloadType": "json",
-    "topic": "send",
-    "x": 390,
-    "y": 320,
-    "wires": [
-      [
-        "e9fcf402.8b1c7",
-        "294a59c6.d4fcf6"
-      ]
-    ]
-  },
-  {
-    "id": "e4f6e720.9a1d",
-    "type": "ui_button",
-    "z": "ad7bedc7.ccb05",
-    "name": "quick 23 heat",
-    "group": "39e89765.5c8f88",
-    "order": 0,
-    "width": 0,
-    "height": 0,
-    "passthru": false,
-    "label": "23°C heating",
-    "tooltip": "quick set 23°C heating",
-    "color": "",
-    "bgcolor": "#ffd699",
-    "icon": "",
-    "payload": "{\"cmd\":\"on\",\"temp\":\"23\",\"mode\":\"heat\",\"fan\":\"auto\"}",
-    "payloadType": "json",
-    "topic": "send",
-    "x": 400,
-    "y": 280,
-    "wires": [
-      [
-        "e9fcf402.8b1c7",
-        "24882e74.4e5f82"
-      ]
-    ]
-  },
-  {
-    "id": "ea431709.c91f4",
-    "type": "debug",
-    "z": "ad7bedc7.ccb05",
-    "name": "quick auto",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "x": 850,
-    "y": 240,
-    "wires": []
-  },
-  {
-    "id": "24882e74.4e5f82",
-    "type": "debug",
-    "z": "ad7bedc7.ccb05",
-    "name": "quick heat",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "x": 850,
-    "y": 280,
-    "wires": []
-  },
-  {
-    "id": "294a59c6.d4fcf6",
-    "type": "debug",
-    "z": "ad7bedc7.ccb05",
-    "name": "quick cool",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "x": 840,
-    "y": 320,
-    "wires": []
-  },
-  {
-    "id": "7a6c752f.009a94",
-    "type": "change",
-    "z": "ad7bedc7.ccb05",
-    "name": "",
-    "rules": [
-      {
-        "t": "change",
-        "p": "payload",
-        "pt": "msg",
-        "from": "deserializeJson() failed: IncompleteInput",
-        "fromt": "str",
-        "to": "{\"status\":\"waiting\"}",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 420,
-    "y": 160,
-    "wires": [
-      [
-        "88e8ed8a.6f19d8"
-      ]
-    ]
-  },
-  {
-    "id": "88e8ed8a.6f19d8",
-    "type": "json",
-    "z": "ad7bedc7.ccb05",
-    "name": "",
-    "property": "payload",
-    "action": "",
-    "pretty": false,
-    "x": 630,
-    "y": 160,
-    "wires": [
-      [
-        "34401740.e754b"
-      ]
-    ]
-  },
-  {
-    "id": "910782cf.e13c98",
-    "type": "change",
-    "z": "ad7bedc7.ccb05",
-    "name": "int to string",
-    "rules": [
-      {
-        "t": "set",
-        "p": "payload",
-        "pt": "msg",
-        "to": "$string(payload)",
-        "tot": "jsonata"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 530,
-    "y": 420,
-    "wires": [
-      [
-        "8a315364.666268"
-      ]
-    ]
-  },
-  {
-    "id": "34c965de.bcb12a",
-    "type": "serial-port",
-    "z": "",
-    "serialport": "/dev/ttyUSB0",
-    "serialbaud": "9600",
-    "databits": "8",
-    "parity": "none",
-    "stopbits": "1",
-    "waitfor": "",
-    "newline": "\\n",
-    "bin": "false",
-    "out": "char",
-    "addchar": "",
-    "responsetimeout": "10000"
-  },
-  {
-    "id": "ac5b4b5f.bf40a8",
-    "type": "ui_group",
-    "z": "",
-    "name": "Selections",
-    "tab": "1d755bb7.515b9c",
-    "disp": true,
-    "width": "6",
-    "collapse": false
-  },
-  {
-    "id": "39e89765.5c8f88",
-    "type": "ui_group",
-    "z": "",
-    "name": "quick access",
-    "tab": "1d755bb7.515b9c",
-    "disp": true,
-    "width": "6",
-    "collapse": false
-  },
-  {
-    "id": "1d755bb7.515b9c",
-    "type": "ui_tab",
-    "z": "",
-    "name": "AC Remote Control",
-    "icon": "dashboard",
-    "disabled": false,
-    "hidden": false
-  }
+        "tooltip": "quickly turn AC OFF",
+        "color": "",
+        "bgcolor": "red",
+        "icon": "",
+        "payload": "{\"cmd\":\"off\"}",
+        "payloadType": "json",
+        "topic": "send",
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "e9fcf402.8b1c7",
+                "d2b1d133.7bfc4"
+            ]
+        ]
+    },
+    {
+        "id": "d2b1d133.7bfc4",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "quick of",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 840,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d0fd18ec.5a048",
+        "type": "function",
+        "z": "ad7bedc7.ccb05",
+        "name": "check token",
+        "func": "const token = \"your_token_here\";\n\n// if invalid token, return unauthorized\nif (msg.payload.token != token) {\n    msg.statusCode = 401;\n    return msg;\n}\n\n// send json part of message to arduino\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 760,
+        "wires": [
+            [
+                "ca6c6081.ede0e8"
+            ]
+        ],
+        "info": "# Receive JSON commands with token\n\nCurl example to call this:\n```\ncurl -X POST -d '{\"cmd\": \"status\", \"token\": \"your_token_here\"}' -H \"Content-Type: application/json\" -H \"Accept: application/json\"  http://192.168.1.100:1880/api\n```\n\nFunction checks the token and if valid, sends the command as such to arduino."
+    },
+    {
+        "id": "ca6c6081.ede0e8",
+        "type": "change",
+        "z": "ad7bedc7.ccb05",
+        "name": "strip token",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload.token",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 760,
+        "wires": [
+            [
+                "501f3147.4dba3"
+            ]
+        ]
+    },
+    {
+        "id": "1b52890d.973247",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "api command",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1000,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "d5426397.e2bc68",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "response",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1020,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "10b12346.dcc3f5",
+        "type": "delay",
+        "z": "ad7bedc7.ccb05",
+        "name": "delay 2 sec",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 990,
+        "y": 680,
+        "wires": [
+            [
+                "b7b7815d.9091b"
+            ]
+        ]
+    },
+    {
+        "id": "b7b7815d.9091b",
+        "type": "change",
+        "z": "ad7bedc7.ccb05",
+        "name": "get response",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "arduinoResponse",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 720,
+        "wires": [
+            [
+                "e616b95f.b76d48",
+                "d5426397.e2bc68"
+            ]
+        ]
+    },
+    {
+        "id": "c45a16eb.46f608",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "arduino raw status",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 410,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d4d332d.a4f885",
+        "type": "debug",
+        "z": "ad7bedc7.ccb05",
+        "name": "send arduino",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 990,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "501f3147.4dba3",
+        "type": "switch",
+        "z": "ad7bedc7.ccb05",
+        "name": "drop unauthorized",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "eq",
+                "v": "401",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 730,
+        "y": 760,
+        "wires": [
+            [
+                "e9fcf402.8b1c7",
+                "10b12346.dcc3f5",
+                "1b52890d.973247"
+            ],
+            [
+                "e616b95f.b76d48",
+                "d5426397.e2bc68"
+            ]
+        ]
+    },
+    {
+        "id": "34c965de.bcb12a",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "ac5b4b5f.bf40a8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Selections",
+        "tab": "1d755bb7.515b9c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "39e89765.5c8f88",
+        "type": "ui_group",
+        "z": "",
+        "name": "Quick commands",
+        "tab": "1d755bb7.515b9c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "1d755bb7.515b9c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "AC Remote Control",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
 ]

@@ -1,6 +1,8 @@
 Toshiba AC remote for Arduino
 =============================
 
+# Serial API using Arduino + IR led
+
 This code creates a serial API interface device to pass commands to Toshiba air
 conditioner / heat pump. This works with my AC model:
 Toshiba Heat Pump RAS-10PKVP-ND, which has a IR remote control WH-H07JE.
@@ -16,7 +18,7 @@ I have programmed Arduino Nano with this, which is connected ATM to RasPi with
 USB cable. One could connect module to anything that outputs serial console.
 E.g. ESP(8266/32) modules.
 
-![arduino-ir-toshiba](toshiba-ir-arduino.jpg)
+![arduino-ir-toshiba](pics/toshiba-ir-arduino.jpg)
 
 Next thing to do is to write small utility to receive MQTT commands within RasPi
 and relay those as serial into Arduino, and back.
@@ -58,6 +60,22 @@ Program will acknowledge the command by sending it back as received, and will
 report status in JSON, e.g:
 * { "cmd": "swing", "status": "ok"}
 * {"status": "fail", "error":"unknown command"}
+
+# HTTP GUI and API using Node-red
+
+After creating serial device, I ended up using [Node-Red](https://nodered.org)
+to create web user interface and also JSON API for controlling AC unit remotely.
+The Arduino is connected to RasPi, which then exposes this kind of remote GUI:
+
+![remote](pics/remote.png) ![remote-command](pics/remote-command.png) ![remote-mode](pics/remote-mode.png) ![remote-fan](pics/remote-fan.png)
+
+This is how to use the API (change token in auth node!):
+```
+curl -X POST -d '{"cmd": "on", "fan": "auto", "mode": "auto", "temp": "23" , "token": "yourtokenhere"}' -H "Content-Type: application/json" -H "Accept: application/json"  http://myraspi:1880/api
+```
+
+And this is what the [nodered-flow](ir-remote-nodered.json) looks like:
+![nodered-flow](pics/node-red-flow.png)
 
 BR,
 Ilkka Tengvall
