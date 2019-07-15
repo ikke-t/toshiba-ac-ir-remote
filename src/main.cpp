@@ -71,8 +71,10 @@ void loop() {
   auto error = deserializeJson(doc, Serial);
 
   if (error) {
-    Serial.print(F("deserializeJson() failed: "));
-    Serial.println(error.c_str());
+    // Serial.print(F("deserializeJson() failed: "));
+    Serial.print("{\"status\":\"waiting\",\"error\":\"");
+    Serial.print(error.c_str());
+    Serial.println("\"}");
     return;
   }
 
